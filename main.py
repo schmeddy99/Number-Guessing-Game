@@ -42,6 +42,13 @@ def game(attempts):
             print(f"You've run out of guesses. The correct answer was {correct_answer}")
             return
 
+        if attempts == 7:  
+            if correct_answer % 2 == 0:
+                print("Hint: The number is even.")
+            else:
+                print("Hint: The number is odd.")
+
+
 
 while True:
     print("Welcome to the Number Guessing Game!")
