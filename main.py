@@ -7,7 +7,6 @@ print(f"The correct_answer is {correct_answer}")
 
 def set_game_difficulty(difficulty_level):
     if difficulty_level == "easy":
-        
         game(10)
     else:
         game(5)
@@ -16,7 +15,13 @@ def game(attempts):
 
     print(f"You have {attempts} attempts to guess the number.")
     while attempts > 0:
-        guess = int(input("Make a guess: "))
+
+        try:
+            guess = int(input("Make a guess: "))
+        except ValueError:
+            print("Sorry what was that? Please enter a valid number.")
+            continue
+
         attempts -= 1
 
         if guess == correct_answer:
@@ -26,8 +31,7 @@ def game(attempts):
             print("Too high!")
         elif correct_answer > guess:
             print("Too low!")
-        else:
-            print("Sorry what was that?")
+            
         
         
         if attempts > 0:
