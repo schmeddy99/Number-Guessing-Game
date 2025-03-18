@@ -1,35 +1,43 @@
 import random
 
-attempts = 0
 
 correct_answer = random.randint(1, 100)
 print(f"The correct_answer is {correct_answer}")
 
 
 def set_game_difficulty(difficulty_level):
-    global attempts
     if difficulty_level == "easy":
-        attempts = 10
-        easy_game()
+        
+        game(10)
     else:
-        attempts =  5
-        # hard_game()
+        game(5)
 
-def easy_game():
-    print("You have 10 attempts to guess the number.")
-    guess = int(input("Make a guess: "))
-    if guess == correct_answer:
-        print(f"You got it! The answer was {correct_answer}.")
-    elif guess > correct_answer:
-        print("Too high!")
-        print("Guess again.")
-        print("You have.")
-    elif correct_answer > guess:
-        print("Too low!")
-        print("Guess again.")
-        print("You have.")
-    else:
-        print("Sorry what was that?")
+def game(attempts):
+
+    print(f"You have {attempts} attempts to guess the number.")
+    while attempts > 0:
+        guess = int(input("Make a guess: "))
+        attempts -= 1
+
+        if guess == correct_answer:
+            print(f"You got it! The answer was {correct_answer}.")
+            return
+        elif guess > correct_answer:
+            print("Too high!")
+        elif correct_answer > guess:
+            print("Too low!")
+        else:
+            print("Sorry what was that?")
+        
+        
+        if attempts > 0:
+            print("Guess again.")
+            print(f"You have {attempts} remaining.")
+        else:
+            print(f"You've run out of guesses. The correct answer was {correct_answer}")
+            return
+
+
 
 print("Welcome to the Number Guessing Game!")
 print("I'm thinking of a number between 1 and 100")
