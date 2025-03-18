@@ -6,6 +6,12 @@ correct_answer = random.randint(1, 100)
 score = 0
 previous_guesses = []
 
+too_high_messages = ["Too high! Aim lower!", "Nope, that's too much!", "Oof, try a smaller number!"]
+too_low_messages = ["Too low! Go up!", "Not quite! Try something bigger.", "You need a higher number!"]
+
+
+
+
 def set_game_difficulty(difficulty_level):
     if difficulty_level == "easy":
         game(10)
@@ -32,9 +38,10 @@ def game(attempts):
             score += 1
             return
         elif guess > correct_answer:
-            print("Too high!")
+            print(random.choice(too_high_messages))
         elif correct_answer > guess:
-            print("Too low!")
+            print(random.choice(too_low_messages))
+
             
         if guess in previous_guesses:
             print("You already guessed that number! Try something else.")
