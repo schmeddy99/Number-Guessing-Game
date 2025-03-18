@@ -2,8 +2,8 @@ import random
 
 
 correct_answer = random.randint(1, 100)
-print(f"The correct_answer is {correct_answer}")
 
+score = 0
 
 def set_game_difficulty(difficulty_level):
     if difficulty_level == "easy":
@@ -12,7 +12,7 @@ def set_game_difficulty(difficulty_level):
         game(5)
 
 def game(attempts):
-
+    global score
     print(f"You have {attempts} attempts to guess the number.")
     while attempts > 0:
 
@@ -26,6 +26,7 @@ def game(attempts):
 
         if guess == correct_answer:
             print(f"You got it! The answer was {correct_answer}.")
+            score += 1
             return
         elif guess > correct_answer:
             print("Too high!")
@@ -53,7 +54,8 @@ while True:
         difficulty = input("Choose a difficulty: ").lower()
     set_game_difficulty(difficulty)
 
-    play_again = input("Would you like to play again? (yes/no)").lower()
+    play_again = input("Would you like to play again? (yes/no) ").lower()
     if play_again != 'yes':
+        print(f"Your total wins: {score}")
         print("Thanks for playing! Goodbye.")
         break
